@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js">
+</script>
+<script>
+$(document).ready(function(){
+   setInterval(function(){
+      $.ajax({
+      type: "GET",
+      cache: false,
+      url: "songinfo",
+      dataType: "text",
+      success:function(result){
+        $("#txta1").html(result);
+        }
+      });
+   }, 5000);
+});
+function wrfifo(val){
+    $.get("wrfifo.php",{keypress:val});
+    return false;
+}
+</script>
+</head>
+<body>
+<textarea readonly warp = "soft" rows="3" id="txta1" style="width:100%;overflow:hidden;font-family:arial;color:black;font-size:50px;" >Waiting for song info....</textarea>
+<br>
+<button type="button" onclick="wrfifo('+');" style="width:19%;height:200px;font-family:arial;color:black;font-size:40px;" id="love"   >Love<br>Song</button>
+<button type="button" onclick="wrfifo('-');" style="width:19%;height:200px;font-family:arial;color:black;font-size:40px;" id="ban"     >Ban<br>Song</button>
+<button type="button" onclick="wrfifo('n');" style="width:19%;height:200px;font-family:arial;color:black;font-size:40px;" id="next"   >Next<br>Song</button>         
+<button type="button" onclick="wrfifo('t');" style="width:19%;height:200px;font-family:arial;color:black;font-size:40px;" id="tired"  >Tired<br>of Song </button>     
+<button type="button" onclick="wrfifo('p');" style="width:19%;height:200px;font-family:arial;color:black;font-size:40px;" id="pause"  >Pause<br>Music </button>
+</body>
+</html>
