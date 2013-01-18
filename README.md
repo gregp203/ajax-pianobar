@@ -22,5 +22,14 @@ pianobar.html on button press GET "wrfifo.php" and sends the keypress as an argu
 wrfifo.php gets the kepress in the argument and writes it to the "var/www/fifo" file.
 pinaobar reads the "var/www/fifo" file as input to control the application.
 
+start/stop pianobar:
+start button loads runpianobar.php?action=star in the background.
+runpianobar.php?action=start runs pianobar in the background as whatever user apache runs as (www-data) and outputs stdout to a file called "pianobarstdout"
+stop button loads runpianobar.php?action=stop in the background.
+since pianobar is run as whatever user apache runs as,  need to add the following to "export XDG_CONFIG_HOME=/var/www/" to "/etc/apache2/envvars"
+this sets the path where pianobar looks for the config file.
+the config file should be located at "/var/www/pianobar/config" 
+runpianobar.php also creates file "pianobarpid" when pianobar is started. it checks if there is already a pid in the file before starting to prevent more then one instance of pianobar running
+pianobar.html checks "pianobarpid" for a pid to set the button to "start" or "stop"
 
 
