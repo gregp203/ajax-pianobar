@@ -31,5 +31,9 @@ this sets the path where pianobar looks for the config file.
 the config file should be located at "/var/www/pianobar/config" 
 runpianobar.php also creates file "pianobarpid" when pianobar is started. it checks if there is already a pid in the file before starting to prevent more then one instance of pianobar running
 pianobar.html checks "pianobarpid" for a pid to set the button to "start" or "stop"
+the apache user (www-data) needs to be added to the group audio for audio to work if pianobar is configured for alsa in the /etc/libao.conf
+issued the command usermod -a -G audio www-data. I have not been able to get pianobar to work with pulse audio run as iuser "www-data"
+
+
 
 
